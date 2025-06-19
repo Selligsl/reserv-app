@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250618144112 extends AbstractMigration
+final class Version20250619122413 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -59,6 +59,11 @@ final class Version20250618144112 extends AbstractMigration
             CREATE INDEX IDX_12D4772FC0DF500E ON salle_crit_ergo (crit_ergo_id)
         SQL);
         $this->addSql(<<<'SQL'
+            CREATE TABLE site_map_link (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, nom VARCHAR(255) NOT NULL, description VARCHAR(255) NOT NULL, url VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL --(DC2Type:datetime_immutable)
+            , updated_at DATETIME NOT NULL --(DC2Type:datetime_immutable)
+            , is_active BOOLEAN NOT NULL)
+        SQL);
+        $this->addSql(<<<'SQL'
             CREATE TABLE "user" (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles CLOB NOT NULL --(DC2Type:json)
             , password VARCHAR(255) NOT NULL, nom VARCHAR(80) NOT NULL)
         SQL);
@@ -102,6 +107,9 @@ final class Version20250618144112 extends AbstractMigration
         SQL);
         $this->addSql(<<<'SQL'
             DROP TABLE salle_crit_ergo
+        SQL);
+        $this->addSql(<<<'SQL'
+            DROP TABLE site_map_link
         SQL);
         $this->addSql(<<<'SQL'
             DROP TABLE "user"
